@@ -61,9 +61,10 @@ class AuthService {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     } catch (e) {
       print(e);
-      if (e.toString().contains('USER_NOT_FOUND')) {
+      String error = e.toString().toLowerCase();
+      if (error.contains('user_not_found') || error.contains('user-not-found')) {
         return FirebaseError.userNotFound;
-      } else if (e.toString().contains('INVALID_EMAIL')) {
+      } else if (error.contains('invalid_email') || error.contains('invalid-email')) {
         return FirebaseError.invalidEmail;
       }
 
