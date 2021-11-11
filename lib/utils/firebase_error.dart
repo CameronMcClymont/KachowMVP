@@ -1,0 +1,1 @@
+enum FirebaseError {incorrectPassword, userNotFound, invalidEmail, other}
